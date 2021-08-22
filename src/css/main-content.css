@@ -1,0 +1,29 @@
+.main-content {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 75%;
+    background-color: var(--theme_grey);
+}
+
+.main-content-enter {
+    display: block;
+    position: absolute;
+    padding: 5px 10%;
+    padding-bottom: 25vh;
+    top: 75%;
+}
+
+.main-content-enter-active {
+    padding: 5px 10%;
+    padding-bottom: 25vh;
+    top: 10%;
+    transition: top 1s;
+}
+
+.main-content-enter-done {
+    padding: 5px 10%;
+    padding-bottom: 25vh;
+    top: 10%;
+    transition: top 1s;
+}

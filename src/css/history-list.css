@@ -1,0 +1,97 @@
+#HistoryList {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0%;
+    padding: 0% 10%;
+    width: 80%;
+    height: 25%;
+    background-color: var(--theme_black);
+    box-sizing: revert;
+    z-index: 98;
+}
+
+#HistoryList div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+}
+
+#HistoryList h3 {
+    margin: 10px 0px;
+    color: whitesmoke;
+}
+
+#HistoryList ul {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: repeat(5, 112px);
+    column-gap: calc((100% - 560px) / 4);
+    height: 158px;
+    
+    -ms-overflow-style: auto;
+    scrollbar-color: #888 #f1f1f1;
+    scrollbar-width: thin;
+}
+
+/* Scrollbar style from W3Schools */
+#HistoryList ul::-webkit-scrollbar {
+    height: 10px;
+}
+
+#HistoryList ul::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+#HistoryList ul::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+
+#HistoryList ul::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+@media only screen and (min-width: 700px) {
+    #HistoryList ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    #HistoryList ul {
+        -ms-overflow-style: none;
+    }
+}
+
+#HistoryList ul li {
+    display: inline-block;
+    margin: 0px;
+}
+
+.history-list-btn {
+    padding: 0px;
+    width: 112px;
+    height: 158px;
+}
+
+@media only screen and (min-width: 1920px) {
+
+    #HistoryList ul {
+        grid-template-columns: repeat(5, var(--history_ele_width));
+        column-gap: calc( (80vw - 5 * var(--history_ele_width)) / 4);
+        height: var(--history_ele_height);
+    }
+
+    .history-list-btn {
+        width: var(--history_ele_width);
+        height: var(--history_ele_height);
+    }
+}
+
+.history-list-btn img {
+    width: 100%;
+    height: 100%;
+}

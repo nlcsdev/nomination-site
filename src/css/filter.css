@@ -1,0 +1,31 @@
+img {
+    transition: 0.5s;
+}
+
+.filter{
+    position: absolute;
+    top: 0;
+    left: 0; 
+}
+
+.filter-hover {
+    z-index: 2;
+    opacity: 0;
+}
+
+.filter-hover:hover{
+    opacity: 1;
+}
+
+.filter-active{
+    z-index: 1;
+    opacity: 1;
+}
+
+.filter-active:hover{
+    opacity: 0;
+}
+
+.greyscale{
+    filter: grayscale(100%);
+}

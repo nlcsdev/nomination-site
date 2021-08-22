@@ -1,0 +1,121 @@
+:root {
+    --theme_black: #121212;
+    --theme_grey: #dadada;
+    --theme_yellow: #F5C518;
+    --movie_ele_width: calc(150 * (100vw / 1920));
+    --movie_ele_height: calc(211 * (100vw / 1920));
+    --history_ele_width: calc(112 * (100vw / 1920));
+    --history_ele_height: calc(158 * (100vw / 1920));
+    -ms-overflow-style: none;
+    background-color: var(--theme_grey) !important;
+}
+
+:root::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0px;
+    overflow-x: hidden;
+    background-color: var(--theme_grey) !important;
+}
+
+#main {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+h2 {
+    font-size: calc(24px + (100vh - 850px)/100 * 4) !important;
+    margin: auto;
+}
+
+h3 {
+    font-size: calc(16px + (100vh - 850px)/100 * 3) !important;
+    margin: auto;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.btn {
+    margin: 0px 5px;
+}
+
+.rel {
+    position: relative;
+}
+
+.transparent-font{
+    color: transparent !important;
+}
+
+#nomination-list-container {
+    height: calc(60vh - 5px);
+}
+
+#NominationList {
+    display: flex;
+    height: 90%;
+    justify-content: center;
+}
+
+#NominationList #bg {
+    height: 100%;
+    object-fit: scale-down;
+}
+
+#preview-container {
+    position: relative;
+    height: 100%;
+}
+
+.nomination-elements-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+}
+
+.nomination-list-text p {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: auto;
+}
+
+.nomination-list-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+}
+
+.page-header h2 {
+    display: none;
+}
+
+@media only screen and (min-width: 600px) {
+
+    .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 10%;
+    }
+    
+    .page-header h2 {
+        display: inline-block;
+        margin: 0px;
+    }
+}
