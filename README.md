@@ -11,4 +11,5 @@ Features:
 - Responsive design for 4k monitors to mobile devices.
 
 Tech Stack:
+
 HTML, JS, CSS, React, React-Redux, React-Transition-Group, React-Boostrap, Axios, OMDB API, Express.js, Amazon API Gateway, AWS S3, AWS Lambda, PIL
