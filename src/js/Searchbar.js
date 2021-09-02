@@ -88,7 +88,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatchMakeRequest: (user_input) => {
-            let url = "https://nlcsdev-proxy.herokuapp.com/search?i=" + user_input;
+            let url = "https://cliff-website.rcp.r9n.co/search?i=" + user_input;
             axios.get(url)
                 .catch((e) => console.log("Error Get: " + e))
                 .then((res) => {
