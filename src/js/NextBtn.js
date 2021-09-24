@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button'
 import { CAROUSELNEXT } from '../root/actions'
 
+//Button to show nomination panel.
 class NextBtn extends React.Component {
 
     constructor(props) {

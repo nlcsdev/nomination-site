@@ -20,6 +20,7 @@ const store = createStore(root_reducer);
 
 ReactDOM.render(
   <Provider store={store}>
+    {/* bootstrap stylesheet */}
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"

@@ -5,6 +5,7 @@ import { UPDATENOMINATION, REMOVENOMINATION } from "../root/actions";
 const selectFilter = require("../assets/images/sfilter.png");
 const removeFilter = require("../assets/images/rfilter.png");
 
+//A button component for each movie.
 class MovieElement extends React.Component {
     constructor(props) {
         super(props);
@@ -13,6 +14,7 @@ class MovieElement extends React.Component {
         this.AppropriateButton = this.AppropriateButton.bind(this);
     }
 
+    //Relevant info pertaining to the button.
     core_movie_data = {
         Title: this.props.movie_info.Title,
         imdbID: this.props.movie_info.imdbID,
@@ -24,16 +26,18 @@ class MovieElement extends React.Component {
     }
 
     handle_remove_nomination = () => {
-        console.log(`Removal Handler Called: ${this.core_movie_data.Title}`);
         this.props.dispatchRemoveNomination(this.core_movie_data);
     }
 
+    //The button when it can nominate itself.
     SelectableButton = (
         <button className={this.props.parentPanel} onClick={() => { this.handle_nomination() }}>
             <img src={this.props.movie_info.Poster} alt={`Title: ${this.props.movie_info.Title}`} />
             <img className="filter filter-hover" src={selectFilter.default} />
         </button>
     );
+
+    //The button when the movie is already nominated and can used to remove the movie.
     RemovableButton = (
         <button className={this.props.parentPanel} onClick={() => { this.handle_remove_nomination() }}>
             <img src={this.props.movie_info.Poster} alt={`Title: ${this.props.movie_info.Title}`} />
@@ -41,11 +45,15 @@ class MovieElement extends React.Component {
             <img className="filter filter-hover" src={removeFilter.default} />
         </button>
     );
+    
+    //The button when the nomination list is capped and no more movies can be nominated.
     InactiveButton = (
         <button className={this.props.parentPanel} disabled>
             <img className="greyscale" src={this.props.movie_info.Poster} alt={`Title: ${this.props.movie_info.Title}`} />
         </button>
     )
+
+    //Select the appropriate button to display.
     AppropriateButton = () => {
 
         if (this.props.nominations.filter(x => x.imdbID == this.props.movie_info.imdbID).length > 0) {
@@ -58,6 +66,7 @@ class MovieElement extends React.Component {
     }
 
     render() {
+        //Element shows movie title on hover.
         return (
             <div className="MovieElement">
                 <div title={this.props.movie_info.Title}>
@@ -89,9 +98,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        //Dispatch an action to nominate a movie.
         dispatchNominate: (core_movie_data) => {
             dispatch(Nominate(core_movie_data));
         },
+        //Dispatch an action to remove a nomination.
         dispatchRemoveNomination: (core_movie_data) => {
             dispatch(Remove_Nomination(core_movie_data));
         }

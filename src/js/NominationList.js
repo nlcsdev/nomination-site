@@ -5,8 +5,10 @@ import { UPDATENOMINATION, REMOVENOMINATION } from '../root/actions';
 const bg = require('../assets/images/bg.jpg');
 const removeFilter = require("../assets/images/rfilter.png");
 
+//Keeps tracks of the nomrination list.
 export const nominations = (state = [], action) => {
     switch (action.type) {
+        //Append any new nominations.
         case UPDATENOMINATION:
             let data = action.payload;
             let checkForExistingID = state.filter(x => x.imdbID == data.imdbID);
@@ -16,6 +18,7 @@ export const nominations = (state = [], action) => {
                 return newState;
             }
             return state;
+        //Remove a nomination.
         case REMOVENOMINATION:
             let remove_target_index = state.findIndex(x => x.imdbID == action.payload.imdbID);
             if (remove_target_index != -1) {
@@ -29,6 +32,7 @@ export const nominations = (state = [], action) => {
     }
 }
 
+//Component of the nomination panel.
 class NominationList extends React.Component {
     constructor(props) {
         super(props);
@@ -40,6 +44,8 @@ class NominationList extends React.Component {
         this.props.dispatchRemoveNomination(core_movie_data);
     }
 
+    //Interactive movie elements placed on an image preview.
+    //Each element is positioned one after another on a background image.
     nominated_element = (nomination_data, i) => {
         let pos = 13 + i * 17;
         let btn_style = {
@@ -61,6 +67,7 @@ class NominationList extends React.Component {
             left: "21%",
             top: pos + "%"
         }
+        //Button to remove the nomination.
         let btn = (
             <button style={btn_style} className="nomination-list-btn" onClick={() => { this.handle_remove_nomination(nomination_data) }}>
                 <img src={nomination_data.Poster} alt={nomination_data.Title} />
@@ -81,6 +88,7 @@ class NominationList extends React.Component {
         return (
             <div id='NominationList'>
                 <div id="preview-container">
+                    {/*A background image for the buttons, creating an interactive image preview.*/}
                     <img id="bg" src={bg.default} />
                     {this.props.nominations.map((e, i) => {
                         return this.nominated_element(e, i)

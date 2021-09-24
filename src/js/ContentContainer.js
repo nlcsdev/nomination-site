@@ -13,6 +13,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import { CAROUSELNEXT, CAROUSELPREV, UPDATERESULT, UPDATENOMINATION } from '../root/actions'
 
+//Carousel State, sets the index of the carousel that slides between search results and nominations
 export const carousel_state = (state = { index: 0, animate: true, showCarousel: false }, action) => {
     switch (action.type) {
 
@@ -22,6 +23,8 @@ export const carousel_state = (state = { index: 0, animate: true, showCarousel: 
         case CAROUSELPREV:
             return { index: 0, animate: true, showCarousel: true };
 
+        //If showCarousel is false, that indicates the site is at its initial state and a recent nomination is nominated.
+        //Accordingly, when the panels are displayed, the nomination panel should show up instead of the search result panel.
         case UPDATENOMINATION:
             if (!state.showCarousel) {
                 return { index: 1, animate: true, showCarousel: true };
@@ -29,6 +32,7 @@ export const carousel_state = (state = { index: 0, animate: true, showCarousel: 
                 return state;
             }
 
+        //Regardless what state or panel the site is currently at, transition the carousel to show the search result panel.
         case UPDATERESULT:
             return { index: 0, animate: true, showCarousel: true };
 
@@ -37,6 +41,7 @@ export const carousel_state = (state = { index: 0, animate: true, showCarousel: 
     }
 }
 
+//Container for the main panel/carousel that contains the search result panel and nomination panel
 class ContentContainer extends React.Component {
     constructor(props) {
         super(props);

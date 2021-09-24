@@ -6,6 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import axios from 'axios';
 
+//Keeps track of user input
 export const input = (state = '', action) => {
     switch (action.type) {
         case SEARCH:
@@ -15,8 +16,7 @@ export const input = (state = '', action) => {
     }
 }
 
-
-
+//Component for the search bar
 class SearchBar extends React.Component {
 
     constructor(props) {
@@ -32,6 +32,7 @@ class SearchBar extends React.Component {
         this.props.dispatchHandleChange(event.target.value);
     }
 
+    //The search bar component takes up most of the screen at the start, but shrinks itself if the main panels need to be shown. showCarousel will trigger appropriate transitions for shrinking.
     comp() {
         return (
 
@@ -87,6 +88,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        //Using user input, make a request on server to request data from OMDB.
+        //When data is returned, store the results in the store.
         dispatchMakeRequest: (user_input) => {
             let url = "https://cliff-website.rcp.r9n.co/search?i=" + user_input;
             axios.get(url)
@@ -96,6 +99,7 @@ const mapDispatchToProps = (dispatch) => {
                 }
                 )
         },
+        //Update user input on the store
         dispatchHandleChange: (user_input) => {
             dispatch(Handle_Change_Action(user_input));
         }

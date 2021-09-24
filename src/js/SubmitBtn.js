@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 
 import axios from 'axios';
 
+//Keeps track of the last nomination result.
 export const nomination_img_meta = (state = { data: "", json: "" }, action) => {
     switch (action.type) {
         case UPDATENOMIMGDATA:
@@ -16,6 +17,7 @@ export const nomination_img_meta = (state = { data: "", json: "" }, action) => {
     }
 }
 
+//Is the site awaiting for backend data to return?
 export const awaiting_nomination_img = (state = false, action) => {
     switch (action.type) {
         case REQUESTNOMIMGDATA:
@@ -27,7 +29,7 @@ export const awaiting_nomination_img = (state = false, action) => {
     }
 }
 
-
+//Button to send all relevant info to backend for processing.
 class SubmitBtn extends React.Component {
 
     constructor(props) {
@@ -36,22 +38,28 @@ class SubmitBtn extends React.Component {
         this.requestImgGeneration = this.requestImgGeneration.bind(this);
     }
 
+    //JSON stringify nomination data
     requestImgJson = () => { return JSON.stringify(this.props.nominations) }
 
     requestImgGeneration = () => {
+        //If nomination data is not cached, then this nomination is new, therefore dispatch to request a download of a new image.
         if (this.props.nominations.toString() != this.props.nomination_img.json.toString()) {
             let request_json = this.requestImgJson();
             this.props.dispatchDownload(request_json);
+        //If nomination data is the same as the previous, simply return a cached version of the image.
         } else {
             downloadImg(this.props.nomination_img.data);
         }
 
     }
 
+    //Button when available to download image.
     downloadBtn = <Button onClick={() => { this.requestImgGeneration(); }} variant="primary" size="lg" active>Download</Button>
 
+    //Button when request to download image is made but awaiting result.
     loadingBtn = <Button className="rel transparent-font" variant="primary" size="lg" disabled>Download<div className="lds-dual-ring" /></Button>
 
+    //Display the approriate button accordingly.
     render() {
         if (this.props.awaiting) {
              return (this.loadingBtn);
@@ -84,6 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        //Make request to AWS to process image and return the result.
         dispatchDownload: (request_param) => {
             dispatch(Request_NomImg_Data_Action());
             let postUrl = "https://nod4m44snb.execute-api.us-east-2.amazonaws.com/production/nominationImage/generate";
@@ -99,6 +108,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
+//The data returned is in base64, download the data in jpeg format.
 function downloadImg(imgData) {
     let imgURL = "data:image/jpeg;base64, ";
     imgURL += imgData;

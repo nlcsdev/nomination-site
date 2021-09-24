@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button'
 import { CAROUSELPREV } from '../root/actions'
 
+//Button to show search result panel.
 class PrevBtn extends React.Component {
 
     constructor(props) {
